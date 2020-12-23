@@ -3,11 +3,19 @@ import socketserver
 import tempfile
 from textwrap import dedent, indent
 
-from zaf.component.decorator import requires
+from zaf.component.decorator import component, requires
 
+from k2.runner.exceptions import SkipException
 from mockserver.mockserver import TcpMockServer
 
 logger = logging.getLogger('k2.systest')
+
+
+@component(name='SkipIfMultiRunnerIsMissing')
+@requires(manager='ExtensionManager')
+def skip_if_multi_runner_is_missing(manager):
+    if not manager.extensions_with_name('multirunner'):
+        raise SkipException('Multirunner is missing')
 
 
 class ExitCodeRequestHandler(socketserver.BaseRequestHandler):
@@ -44,6 +52,7 @@ class ExitCodeRequestHandler(socketserver.BaseRequestHandler):
             pass
 
 
+@requires(prereq='SkipIfMultiRunnerIsMissing')
 @requires(zk2='Zk2')
 def test_gtest_runner(zk2):
 
@@ -64,6 +73,7 @@ def test_gtest_runner(zk2):
         assert 'Total:   3' in result.stdout
 
 
+@requires(prereq='SkipIfMultiRunnerIsMissing')
 @requires(zk2='Zk2')
 def test_gtest_runner_with_two_binaries(zk2):
 
@@ -96,6 +106,7 @@ def test_gtest_runner_with_two_binaries(zk2):
             """), '  ') in result.stdout, result.stdout
 
 
+@requires(prereq='SkipIfMultiRunnerIsMissing')
 @requires(zk2='Zk2')
 def test_gtest_running_with_xml_reporter(zk2):
 
