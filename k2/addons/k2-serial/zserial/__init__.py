@@ -28,6 +28,15 @@ SERIAL_RECONNECT = MessageId(
     Trigger a reconnect of the serial connection
     """)
 
+SERIAL_SUSPEND = MessageId(
+    'SERIAL_SUSPEND', """\
+    Suspends serial port handling, leaving the port available for raw access.
+    """)
+
+SERIAL_RESUME = MessageId('SERIAL_RESUME', """\
+    Resumes serial port handling
+    """)
+
 SERIAL_RAW_LINE = MessageId(
     'SERIAL_RAW_LINE', """\
     An event with a raw line that is read directly from the serial connection
