@@ -51,7 +51,7 @@ UPGRADE_COMMAND = CommandId(
         ConfigOption(UPGRADE_SOFTWARE, required=True),
         ConfigOption(SUT, required=True)
     ],
-    uses=['sut'])
+    uses=['sut', 'sutevents', 'exec'])
 
 
 @FrameworkExtension(

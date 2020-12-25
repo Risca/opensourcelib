@@ -9,6 +9,7 @@ ext.healthcheck.enabled: false
 ext.iprcu.enabled: false
 ext.iprcucc.enabled: false
 ext.linuxmonitor.enabled: false
+ext.mender.enabled: false
 ext.monitor.enabled: false
 ext.powermeter.enabled: false
 ext.powermetercc.enabled: false

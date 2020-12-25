@@ -20,7 +20,7 @@ logger = logging.getLogger(get_logger_name('k2', 'sutevents.time'))
 
 @CommandExtension(
     name='sutevents',
-    extends=[RUN_COMMAND],
+    extends=[RUN_COMMAND, 'sutevents'],
     config_options=[
         ConfigOption(SUT, required=True, instantiate_on=True),
         ConfigOption(SUT_RESET_DONE_TIMEOUT, required=True),
