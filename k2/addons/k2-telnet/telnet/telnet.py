@@ -35,7 +35,7 @@ def telnet_exec(context, sut):
 
 @CommandExtension(
     name='telnet',
-    extends=[RUN_COMMAND, 'sut'],
+    extends=[RUN_COMMAND, 'exec'],
     config_options=[
         ConfigOption(SUT, required=True, instantiate_on=True),
         ConfigOption(SUT_IP, required=True),

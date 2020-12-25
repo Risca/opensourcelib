@@ -126,7 +126,7 @@ class RawSerialPort(object):
 
 @CommandExtension(
     name='zserial',
-    extends=[RUN_COMMAND],
+    extends=[RUN_COMMAND, 'exec'],
     config_options=[
         ConfigOption(SUT, required=True, instantiate_on=True),
         ConfigOption(SERIAL_ENABLED, required=True),
